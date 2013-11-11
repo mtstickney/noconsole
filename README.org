@@ -1,0 +1,20 @@
+* About
+  This is a small program for Windows to run console applications
+  with the console window initially hidden. This avoids the quick
+  flash of console window normally associated with hiding the window,
+  without removing the window entirely (it can be restored at any time
+  with =ShowWindow=).
+
+  =noconsole= is primarily useful for applications that have a GUI but
+  open a console window anyway (saved Lisp images, for example). GUI
+  applications should also work normally, though =noconsole= won't
+  really do anything useful.
+
+* Usage
+  : noconsole.exe <program_name> [<args>...]
+
+* Building
+  Using the MSVC compiler:
+  : cl.exe noconsole.c
+  Using MinGW, something like:
+  : gcc -o noconsole noconsole.c -static
