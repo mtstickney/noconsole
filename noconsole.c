@@ -21,13 +21,6 @@ int WINAPI MAIN(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i
 	si.wShowWindow = SW_HIDE;
 	ZeroMemory(&pi, sizeof(pi));
 
-	/* Attach to the parent console, in case we need to output an error */
-	AttachConsole(ATTACH_PARENT_PROCESS);
-
-	freopen("CONOUT$", "wb", stdout);
-	freopen("CONIN$", "rb", stdin);
-	freopen("CONOUT$", "wb", stderr);
-
 	/* Note: argnum is not like argc... */
 	if (argnum < 1) {
 		fputs("Usage: noconsole <program> [<args>...]\n", stderr);
@@ -51,8 +44,6 @@ int WINAPI MAIN(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR pCmdLine, i
 	/* Clean up the handles */
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
-
-	FreeConsole();
 
 	ExitProcess(exit_code);
 	return 0;
